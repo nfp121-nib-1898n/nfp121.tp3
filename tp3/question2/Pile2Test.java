@@ -1,10 +1,10 @@
 package question2;
-
+import java.util.Stack;
 /**
  * Classe-test Pile2Test.
  * 
- * @author (votre nom)
- * @version (un num√©ro de version ou une date)
+ * @author (antonios ghaly)
+ * @version (6/1/2020)
  * 
  *          Les classes-test sont document√©es ici :
  *          http://junit.sourceforge.net/javadoc/junit/framework/TestCase.html
@@ -24,44 +24,114 @@ package question2;
  *          engagements, et suivi d'un appel √† tearDown(), qui les d√©truit.
  */
 public class Pile2Test extends junit.framework.TestCase {
-	// D√©finissez ici les variables d'instance n√©cessaires √† vos engagements;
-	// Vous pouvez √©galement les saisir automatiquement du pr√©sentoir
-	// √† l'aide du menu contextuel "Pr√©sentoir --> Engagements".
+	// DÈfinissez ici les variables d'instance nÈcessaires ‡ vos engagements;
+	// Vous pouvez Ègalement les saisir automatiquement du prÈsentoir
+	// ‡ l'aide du menu contextuel "PrÈsentoir --> Engagements".
 	// Notez cependant que ce dernier ne peut saisir les objets primitifs
-	// du pr√©sentoir (les objets sans constructeur, comme int, float, etc.).
+	// du prÈsentoir (les objets sans constructeur, comme int, float, etc.).
 
 	/**
 	 * Constructeur de la classe-test Pile2Test
 	 */
+	private Pile2 pile2;
+	private Stack pileCompare;
+	
 	public Pile2Test() {
 	}
 
 	/**
 	 * Met en place les engagements.
 	 * 
-	 * M√©thode appel√©e avant chaque appel de m√©thode de test.
+	 * MÈthode appelÈe avant chaque appel de mÈthode de test.
 	 */
 	protected void setUp() // throws java.lang.Exception
 	{
-		// Initialisez ici vos engagements
+		pile2 = new Pile2(4);
+		try {
+			pile2.empiler("Jack");
+			pile2.empiler("Queen");
+			pile2.empiler("joe");
+			pile2.empiler("King");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		pileCompare = new Stack<String>();
+		try {
+			pileCompare.push("Jack");
+			pileCompare.push("Queen");
+			pileCompare.push("joe");
+			pileCompare.push("King");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
 	 * Supprime les engagements
 	 * 
-	 * M√©thode appel√©e apr√®s chaque appel de m√©thode de test.
+	 * MÈthode appelÈe aprËs chaque appel de mÈthode de test.
 	 */
 	protected void tearDown() // throws java.lang.Exception
 	{
-		// Lib√©rez ici les ressources engag√©es par setUp()
+		// LibÈrez ici les ressources engagÈes par setUp()
+	}
+
+	public void test_sommet() {
+		try {
+			assertEquals(" Sommet ? ", "King", pile2.sommet());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void test_estVide() {
+		assertEquals(" stackOfCards est vide  ? ", false, pile2.estVide());
+	}
+
+	public void test_estPleine() {
+		assertEquals(" estPleine  ? ", false, pile2.estPleine());
+	}
+
+	public void test_estPleineV2() {
+		try {
+			pile2.empiler("jad");
+			pile2.empiler("mina");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertEquals(" estPleine2  ", true, pile2.estPleine());
+	}
+
+	public void test_equals() {
+		assertEquals(" equals  ? ", true, pile2.equals(pileCompare));
+
+	}
+
+	public void test_equalsV2() {
+		try {
+			pile2.depiler();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertEquals(" equals  ? ", false, pile2.equals(pileCompare));
+	}
+
+	public void test_taille() {
+		assertEquals(" taille  ? ", 4, pile2.taille());
+	}
+
+	public void test_capacite() {
+		assertEquals(" capacite  ? ", 6, pile2.capacite());
 	}
 
 	/**
-	 * Il ne vous reste plus qu'√† d√©finir une ou plusieurs m√©thodes de test. Ces
-	 * m√©thodes doivent v√©rifier les r√©sultats attendus √† l'aide d'assertions
-	 * assertTrue(<boolean>). Par convention, leurs noms devraient d√©buter par
-	 * "test". Vous pouvez √©baucher le corps gr√¢ce au menu contextuel
-	 * "Enregistrer une m√©thode de test".
+	 * Il ne vous reste plus qu'‡ dÈfinir une ou plusieurs mÈthodes de test. Ces
+	 * mÈthodes doivent vÈrifier les rÈsultats attendus ‡ l'aide d'assertions
+	 * assertTrue(<boolean>). Par convention, leurs noms devraient dÈbuter par
+	 * "test". Vous pouvez Èbaucher le corps gr‚ce au menu contextuel
+	 * "Enregistrer une mÈthode de test".
 	 */
 
 }

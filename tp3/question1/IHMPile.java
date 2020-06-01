@@ -3,7 +3,8 @@ package question1;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-
+import java.util.*;
+import question2.Pile4;
 public class IHMPile extends JFrame implements ActionListener{
     private JTextField donnee = new JTextField(6);
     private JTextField sommet = new JTextField(6);
@@ -36,19 +37,38 @@ public class IHMPile extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent ae){
         if(ae.getActionCommand().equals("empiler")){
+          try {
+                p.empiler(donnee.getText());
+                Vector<Object> objectToCompare = new Vector<Object>();
+                for (int i = 1; i < 6; i--) {
+                    objectToCompare.add("" + i);
+                }
+                System.out.println("sommet " + p.sommet());
+                System.out.println("capacite " + p.capacite());
+                System.out.println("taille " + p.taille());
+                System.out.println("*************");
 
-            // à compléter
-
-            // en cas d'exception
-            //contenu.setText( /* à compléter */"" + " estPleine !");
-
+                donnee.setText(""); 
+                contenu.setText(p.toString());
+            } catch (Exception e) {
+                contenu.setText(" estPleine !"); 
+                e.printStackTrace();
+            }
         }else{
-
-            // à compléter
-            // en cas d'exception
-            //contenu.setText( /* à compléter */"" + " estVide !");
+  try {
+                p.depiler();
+                System.out.println("sommet " + p.sommet());
+                System.out.println("capacite " + p.capacite());
+                System.out.println("taille " + p.taille());
+                System.out.println("*************");
+                contenu.setText(p.toString());
+            } catch (Exception e) {
+                contenu.setText(" estVide !"); 
+                e.printStackTrace();
+            }
         }
     }
+
 
     public static void main(String[] args){
         new IHMPile();

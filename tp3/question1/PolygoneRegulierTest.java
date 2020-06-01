@@ -12,7 +12,7 @@ public class PolygoneRegulierTest extends junit.framework.TestCase {
     }
 
     /*
-     * la rÃ¨gle : Objects that are equal according to the equals method must
+     * la règle : Objects that are equal according to the equals method must
      * return the same hashCode value If two objects are not equal according to
      * equals, they are not required to return different hashCode values. voir
      * http://java.sun.com/j2se/1.5/docs/api/java/lang/Object.html#hashCode()
